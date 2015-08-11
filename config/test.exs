@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :simple_blog, SimpleBlog.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "lcp",
+  password: "",
   database: "simple_blog_test",
   pool: Ecto.Adapters.SQL.Sandbox, # Use a sandbox for transactional testing
   size: 1

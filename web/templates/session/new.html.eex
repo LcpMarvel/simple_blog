@@ -1,0 +1,15 @@
+<h1>登录</h1>
+
+<%= form_for @session, session_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= label f, :email %>
+    <%= text_input f, :email, class: "form-control", placeholder: "Your Email" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password %>
+    <%= password_input f, :password, class: "form-control", placeholder: "Enter your password" %>
+  </div>
+
+  <%= submit "Submit", class: "btn btn-primary" %>
+<% end %>

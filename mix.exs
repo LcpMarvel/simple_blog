@@ -36,7 +36,8 @@ defmodule SimpleBlog.Mixfile do
       {:phoenix_html, "~> 1.1"},
       {:phoenix_live_reload, "~> 0.4", only: :dev},
       {:cowboy, "~> 1.0"},
-      {:comeonin, "~> 1.1"}
+      {:comeonin, "~> 1.1"},
+      {:poison, "~> 1.4.0"}
     ]
   end
 end

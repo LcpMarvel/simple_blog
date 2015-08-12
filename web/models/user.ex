@@ -30,4 +30,21 @@ defmodule SimpleBlog.User do
   def encrypt(changeset) do
     changeset |> get_field(:password) |> to_string |> Bcrypt.hashpwsalt
   end
+
+  def session(user, params \\ :empty) do
+    user
+      |> cast(params, ~w(email password))
+  end
+
+  def verify(session) do
+    email = session |> get_field(:email) |> to_string
+
+    user = Repo.one(from u in User, where: u.email == ^email, limit: 1)
+
+    session
+      |> get_field(:password)
+      |> to_string
+      |> Bcrypt.checkpw(user.password)
+      |> if do: {:ok, user}, else: :authorized
+  end
 end

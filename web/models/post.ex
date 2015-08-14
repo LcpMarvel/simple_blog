@@ -14,6 +14,6 @@ defmodule SimpleBlog.Post do
   def changeset(post, params \\ :empty) do
     post
       |> cast(params, ~w{user_id title body}, ~w{})
-      |> update_change(:body, &(Earmark.to_html(&1)))
+      |> update_change(:body, &(Earmark.to_html/1))
   end
 end

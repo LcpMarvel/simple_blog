@@ -1,0 +1,15 @@
+<h1 class="text-center">添加文章</h1>
+
+<%= form_for @changeset, post_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= label f, :title %>
+    <%= text_input f, :title, class: "form-control", placeholder: "Post title" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :body %>
+    <%= textarea f, :body, class: "form-control", placeholder: "Post context", rows: 20 %>
+  </div>
+
+  <%= submit "Submit", class: "btn btn-primary btn-block" %>
+<% end %>

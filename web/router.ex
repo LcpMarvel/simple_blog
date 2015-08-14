@@ -16,6 +16,7 @@ defmodule SimpleBlog.Router do
     pipe_through :browser # Use the default browser stack
 
     resources "/registrations", RegistrationController, only: [:new, :create]
-    resource "/session", SessionController, only: [:new, :create, :delete]
+    resources "/session", SessionController, only: [:new, :create, :delete], singleton: true
+    resources "/posts", PostController, only: [:new, :create]
   end
 end

@@ -1,8 +1,16 @@
 # SimpleBlog
 
-To start your new Phoenix application:
+It's my new blog built on phoenix framework. 
 
-1. Install dependencies with `mix deps.get`
-2. Start Phoenix endpoint with `mix phoenix.server`
+Learn Elixir and Phoenix together!
 
-Now you can visit `localhost:4000` from your browser.
+
+## Installation
+
+1. `git clone git@github.com:LcpMarvel/aliyun_open_search.git`
+
+2. change the config file
+
+3. install dependencies with `mix deps.get`
+
+4. run `mix phoenix.server`

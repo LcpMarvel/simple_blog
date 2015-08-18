@@ -15,7 +15,7 @@ defmodule SimpleBlog.SessionController do
     case User.verify(session) do
       {:ok, user} ->
         conn
-          |> put_session(:user_id, user.id)
+          |> put_session(:current_user_id, user.id)
           |> put_flash(:info, "Login successfully.")
           |> redirect(to: session_path(conn, :new))
       :authorized ->
@@ -27,7 +27,7 @@ defmodule SimpleBlog.SessionController do
 
   def delete(conn, _params) do
     conn
-      |> put_session(:user_id, nil)
+      |> put_session(:current_user_id, nil)
       |> put_flash(:info, "Logout successfully.")
       |> redirect(to: session_path(conn, :new))
   end

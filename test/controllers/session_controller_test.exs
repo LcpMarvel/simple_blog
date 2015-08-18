@@ -28,7 +28,7 @@ defmodule SimpleBlog.SessionControllerTest do
     }
     conn = post conn(), "/session", params
 
-    assert get_session(conn, :user_id) == 123456
+    assert get_session(conn, :current_user_id) == 123456
   end
 
   test "POST /session failed" do
@@ -46,7 +46,7 @@ defmodule SimpleBlog.SessionControllerTest do
   test "DELETE /session" do
     conn = delete conn(), "/session"
 
-    assert !get_session(conn, :user_id)
+    assert !get_session(conn, :current_user_id)
     assert get_flash(conn, :info) == "Logout successfully."
   end
 end

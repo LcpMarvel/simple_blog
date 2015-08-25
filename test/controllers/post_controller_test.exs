@@ -5,18 +5,35 @@ defmodule SimpleBlog.PostControllerTest do
   alias SimpleBlog.Post
 
   setup do
-    %User{
+    {:ok, user} = %User{
       id: 123456,
       username: "lcp",
       email: "abc@gmail.com",
       password: Comeonin.Bcrypt.hashpwsalt("password")
     } |> Repo.insert
 
-    {:ok, user: Repo.get(User, 123456) }
+    {:ok, post} = %Post{
+      id: 123,
+      user: user,
+      title: "post_title",
+      body: "body"
+    } |> Repo.insert
+
+    {:ok, user: user, post: post }
   end
 
-  test "GET /posts/new", _context do
-    conn = get conn(), "/posts/new"
+  test "GET /posts", context do
+    conn = conn()
+            |> put_private(:authenticated_current_user_id, context[:user].id)
+            |> get("/posts")
+
+    assert html_response(conn, 200) =~ "post_title"
+  end
+
+  test "GET /posts/new", context do
+    conn = conn()
+            |> put_private(:authenticated_current_user_id, context[:user].id)
+            |> get("/posts/new")
 
     assert html_response(conn, 200) =~ "添加文章"
   end

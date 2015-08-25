@@ -17,6 +17,6 @@ defmodule SimpleBlog.Router do
 
     resources "/registrations", RegistrationController, only: [:new, :create]
     resources "/session", SessionController, only: [:new, :create, :delete], singleton: true
-    resources "/posts", PostController, only: [:new, :create]
+    resources "/posts", PostController, only: [:index, :new, :create]
   end
 end

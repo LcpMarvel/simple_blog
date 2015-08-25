@@ -1,9 +1,14 @@
 defmodule SimpleBlog.PostController do
   use SimpleBlog.Web, :controller
   alias SimpleBlog.Post
-  alias SimpleBlog.Plugs.Authenticated
 
-  plug Authenticated when not action in [:new]
+  plug SimpleBlog.Plugs.Authenticated
+
+  def index(conn, _params) do
+    posts = Repo.all(from p in Post, preload: [:user])
+
+    render conn, "index.html", posts: posts
+  end
 
   def new(conn, _params) do
     changeset = Post.changeset(%Post{})
